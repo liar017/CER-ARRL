@@ -11,23 +11,12 @@ def read_data(filepath):
 p = argparse.ArgumentParser()
 # p.add_argument("-i", "--infile", help="input data file", type=argparse.FileType('r'), default='OpenRiceText.test')
 p.add_argument("-m", "--modelfile", help="input model file", type=argparse.FileType('rb'), default='save_model/HotelRec_2023')
+p.add_argument("--dataset", default="HotelRec")
 args = p.parse_args()
 
-user2items_test = {}
-test_tuple_list = []
-with open('HotelRec.test', 'r') as f:
-    lines = f.readlines()
-    for line in lines:
-        lis = line.strip().split()
-        u = int(lis[0])
-        i = int(lis[1])
-        exps = [int(i) for i in lis[2:]]
-        test_tuple_list.append([u, i, set(exps)])
-        if u not in user2items_test:
-            user2items_test[u] = [i]
-        else:
-            user2items_test[u].append(i)
-
+_, _, test_tuple_list, user2items_test, _, _, _ = load_data(
+    f"data/{args.dataset}/{args.dataset}.mat"
+)
 
 model = pickle.load(args.modelfile)
 

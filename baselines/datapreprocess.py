@@ -86,7 +86,7 @@ def prepare(name, baselines, regenerate_averages):
     for baseline in baselines:
         directory = BASELINE_DIR / baseline / "data"
         if baseline == "AMCF":
-            link_mat(source, directory / source.name)
+            directory.mkdir(parents=True, exist_ok=True)
         elif baseline in ("PITF", "BPER-J"):
             link_mat(source, directory / name / source.name)
 
@@ -110,8 +110,8 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--dataset", choices=DATASETS, nargs="+", default=DATASETS)
     parser.add_argument("--baseline", choices=BASELINES, nargs="+", default=BASELINES)
-    parser.add_argument("--regenerate-amcf-averages", action="store_true",
-                        help="overwrite existing AMCF average files using the selected training split")
+    parser.add_argument("--regenerate-amcf-averages", action=argparse.BooleanOptionalAction, default=True,
+                        help="recompute AMCF average files from the selected training split (default: enabled)")
     args = parser.parse_args()
     for name in args.dataset:
         prepare(name, args.baseline, args.regenerate_amcf_averages)

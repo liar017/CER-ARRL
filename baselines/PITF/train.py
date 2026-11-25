@@ -24,9 +24,10 @@ p.add_argument("-l", "--lamb", help="lambda (default=0.00005)", type=float, narg
 p.add_argument("-k", help="dimension (default=10)", type=int, nargs='?', default=30)
 p.add_argument("-m", "--max_iter", help="max_iter (default=100)", type=int, nargs='?', default=150)
 p.add_argument("-v", "--verbose", help="verbosity", action='store_true')
+p.add_argument("--dataset", default="HotelRec")
 args = p.parse_args()
 
-dataset = 'HotelRec'
+dataset = args.dataset
 seed = 2017
 data_shape, train_tuple_list, test_tuple_list, user2items_test, user2index, item2index, exp2index = \
     load_data('data/' + dataset + '/' + dataset + '.mat')

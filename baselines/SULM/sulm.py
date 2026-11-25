@@ -1,3 +1,4 @@
+import argparse
 import time
 import sys
 import heapq
@@ -853,6 +854,9 @@ def same_seeds(seed):
 
 
 if __name__ == '__main__':
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--dataset', default='OpenRiceEmoji')
+    args = parser.parse_args()
     for seed in [2025]:
         logger = logging.getLogger('signature')
         logging.basicConfig(format='%(asctime)s : %(name)-12s: %(levelname)s : %(message)s')
@@ -860,7 +864,7 @@ if __name__ == '__main__':
         logger.info("running %s" % ' '.join(sys.argv))
         # seed = 2010
         same_seeds(seed)
-        ratings = read_data('data/OpenRice/OpenRice_train.txt')
+        ratings = read_data(f'data/{args.dataset}/{args.dataset}_train.txt')
         r = np.array(ratings)
         data_length = len(r)
         users = r[:, 0]

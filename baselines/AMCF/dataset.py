@@ -1,3 +1,5 @@
+from pathlib import Path
+
 import numpy as np
 import random
 import torch
@@ -9,7 +11,8 @@ def get_data(size, batch_size=256):
     """
     size: can be either '100k' or '1m', or 'ciao'
     """
-    path = 'data/' + size + '.mat'
+    shared_path = Path(__file__).resolve().parents[2] / "datasets" / f"{size}.mat"
+    path = shared_path if shared_path.is_file() else Path("data") / f"{size}.mat"
     data = scio.loadmat(path)
     data = {'E': data.get('E'), 'D': data.get('D'), 'is': data.get('is')[0], 'iu': data.get('iu')[0]}
     train_index, test_index = [], []
@@ -44,7 +47,7 @@ def get_data(size, batch_size=256):
     for i in train_index:
         item_id = data['is'][i] - 1
         if item_id not in item_genre:
-            item_genre[item_id] = data['E'][i]
+            item_genre[item_id] = data['E'][i].copy()
         else:
             for j in range(exp_num):
                 if data['E'][i][j] == 1:

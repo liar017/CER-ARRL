@@ -15,7 +15,7 @@ def same_seeds(seed):
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--data_path', type=str, help='path for loading raw data',
-                    default='data/OpenRice/OpenRice.mat')
+                    default='data/OpenRiceEmoji/OpenRiceEmoji.mat')
 parser.add_argument('--data_ratio', type=str, help='ratio of train:test, default=7:3', default='7:3')
 parser.add_argument("-o", "--outfile", help="output model file", type=argparse.FileType('wb'), 
                     default='save_model/OpenRice_2024')
