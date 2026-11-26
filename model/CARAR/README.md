@@ -23,14 +23,14 @@ Each function above is called by `Model/CARAR.m` to formulate the full CARAR mod
 - HotelRec [^3]
 - OpenRice [^4] Text / Emoji
 
-All datasets are stored in `Data/` in `.mat` Matlab workspace files. Each file include:
+All five datasets are provided in the repository's [datasets](../../datasets/) directory in `.mat` format. Each file include:
 - `D` (N * d): Additional information for each record.
 - `E` (N * l): Review aspect labels for each record.
 - `is` (N * 1): Item ID for each record.
 - `iu` (N * 1): User ID for each record.
 - `Label_E`  (Only available for OpenRice Text / OpenRice Emoji): Descriptions for each review aspect.
 
-You can download the datasets we used at [Google Drive](https://drive.google.com/file/d/1--OJ0a_2bEQ9yy64NX2JmYf1vFDyV72Z/view?usp=sharing). Extract the downloaded zip file and put them in `Data/`.
+You can also download the datasets at [Google Drive](https://drive.google.com/file/d/1--OJ0a_2bEQ9yy64NX2JmYf1vFDyV72Z/view?usp=sharing). Extract the downloaded zip file and put them in `Data/`.
 
 ## Usage
 
