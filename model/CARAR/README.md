@@ -23,7 +23,10 @@ Each function above is called by `Model/CARAR.m` to formulate the full CARAR mod
 - HotelRec [^3]
 - OpenRice [^4] Text / Emoji
 
-All five datasets are provided in the repository's [datasets](../../datasets/) directory in `.mat` format. Each file include:
+All five datasets are provided in the repository's [datasets](../../datasets/) directory in `.mat` format.
+Before running CARAR, please copy the required dataset files into the `Data/` directory.
+
+Each file include:
 - `D` (N * d): Additional information for each record.
 - `E` (N * l): Review aspect labels for each record.
 - `is` (N * 1): Item ID for each record.
